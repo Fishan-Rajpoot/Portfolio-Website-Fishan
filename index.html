@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Fishan Qaisar - Game Developer</title>
+    <meta name="description" content="Portfolio of Muhammad Fishan Qaisar, a Unity game developer creating engaging experiences">
+    <meta name="keywords" content="game developer, Unity, C#, Muhammad Fishan Qaisar, portfolio">
+    <link rel="icon" href="./favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="w-full bg-black text-white p-4 fixed top-0" role="navigation" aria-label="Main navigation">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Muhammad Fishan Qaisar</h1>
+            <ul class="flex space-x-4">
+                <li><a href="#home" class="hover:underline" aria-label="Go to Home section">Home</a></li>
+                <li><a href="#about" class="hover:underline" aria-label="Go to About section">About</a></li>
+                <li><a href="#projects" class="hover:underline" aria-label="Go to Projects section">Projects</a></li>
+                <li><a href="#contact" class="hover:underline" aria-label="Go to Contact section">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center bg-white pt-16" role="banner">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-black">Muhammad Fishan Qaisar</h1>
+            <p class="text-lg md:text-xl mb-6 text-gray-700">Developing Immersive Games with Unity</p>
+            <a href="#projects" class="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700" aria-label="View my portfolio projects">
+                View My Projects
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-black text-white" role="region" aria-label="About me">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">About Me</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-4">
+                I’m Muhammad Fishan Qaisar, a dedicated game developer pursuing a BSCS at Lahore Garrison University.
+            </p>
+            <p class="max-w-2xl mx-auto text-lg mb-4">
+                At Euphoria XR, I create games with Unity and C#, focusing on seamless gameplay. My internship at Space Storm Gaming Studios sharpened my ability to design interactive experiences. Skilled in C++, Adobe Illustrator, and Photoshop, I strive to develop innovative games that captivate and inspire players.
+            </p>
+            <a href="./assets/resume.pdf" class="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700" download aria-label="Download my resume">Download Resume</a>
+        </div>
+    </section>
+
+    <section id="projects" class="py-16 bg-white" role="region" aria-label="My projects">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8 text-black">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 p-6 rounded shadow project-card">
+                    <img src="./images/recycle-center-simulator.jpg" alt="Recycle Center Simulator game screenshot" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-black">Recycle Center Simulator</h3>
+                    <p class="mb-4 text-gray-700">
+                        A Unity game where players manage a recycling facility, balancing efficiency and sustainability. Built with C# for intricate simulation systems.
+                    </p>
+                    <a href="https://github.com/yourusername/recycle-center-simulator" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+                <div class="bg-gray-100 p-6 rounded shadow project-card">
+                    <img src="./images/tangle-master.jpg" alt="Tangle Master game screenshot" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-black">Tangle Master</h3>
+                    <p class="mb-4 text-gray-700">
+                        A Unity puzzle game where players untangle complex patterns. Developed with C# for intuitive mechanics and engaging visuals.
+                    </p>
+                    <a href="https://github.com/yourusername/tangle-master" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+                <div class="bg-gray-100 p-6 rounded shadow project-card">
+                    <img src="./images/home-hammer-2d.jpg" alt="Home Hammer 2D game screenshot" class="w-full h-48 object-cover mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-black">Home Hammer 2D</h3>
+                    <p class="mb-4 text-gray-700">
+                        A Unity 2D game where players renovate homes through creative puzzles. Built with C# for smooth interactions and vibrant design.
+                    </p>
+                    <a href="https://github.com/yourusername/home-hammer-2d" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-black text-white" role="region" aria-label="Contact me">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+            <p class="mb-4">Email: <a href="mailto:iamfishan011@gmail.com" class="text-red-600 hover:underline">iamfishan011@gmail.com</a></p>
+            <p class="mb-4">LinkedIn: <a href="https://linkedin.com/in/muhammad-fishan-qaisar" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">My Profile</a></p>
+            <p class="mb-4">GitHub: <a href="https://github.com/yourusername" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">My Repositories</a></p>
+            <p class="mb-6">Portfolio: <a href="https://bony-trowel-e7c.notion.site/Fishan-Qaisar132456d9ead2807caecld2I6d48bob65" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">Notion Site</a></p>
+            <form action="https://formspree.io/f/your-form-id" method="POST" class="max-w-lg mx-auto" id="contact-form">
+                <div class="mb-4">
+                    <label for="name" class="block text-left mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 rounded bg-gray-800 text-white" required aria-required="true">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-left mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 rounded bg-gray-800 text-white" required aria-required="true">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-left mb-2">Message</label>
+                    <textarea id="message" name="message" class="w-full p-2 rounded bg-gray-800 text-white" rows="5" required aria-required="true"></textarea>
+                </div>
+                <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-red-600 text-white p-3 rounded-full hover:bg-red-700" aria-label="Scroll back to top">
+        ↑
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
