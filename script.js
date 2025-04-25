@@ -1,39 +1,15 @@
-// Smooth scrolling for navbar links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// Form submission feedback
-document.querySelector('#contact-form')?.addEventListener('submit', function (e) {
-    const name = document.querySelector('#name').value.trim();
-    const email = document.querySelector('#email').value.trim();
-    const message = document.querySelector('#message').value.trim();
-
-    if (!name || !email || !message) {
-        e.preventDefault();
-        alert('Please fill out all fields.');
-        return;
-    }
-
-    if (!email.includes('@') || !email.includes('.')) {
-        e.preventDefault();
-        alert('Please enter a valid email address.');
-        return;
-    }
-
-    // Formspree handles submission, this is just UX feedback
-    setTimeout(() => {
-        alert('Message sent successfully! I’ll respond soon.');
-        this.reset();
-    }, 500);
-});
-
-// Back to top button
 const backToTopButton = document.querySelector('#back-to-top');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
@@ -47,5 +23,45 @@ backToTopButton.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
+    });
+});
+
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.querySelector('img').style.transform = 'scale(1.05)';
+        card.querySelector('img').style.filter = 'brightness(1.2)';
+    });
+    card.addEventListener('mouseleave', () => {
+        card.querySelector('img').style.transform = 'scale(1)';
+        card.querySelector('img').style.filter = 'brightness(1)';
+    });
+});
+
+window.addEventListener('load', () => {
+    const nav = document.querySelector('nav');
+    setTimeout(() => {
+        nav.classList.add('nav-slide-in-active');
+    }, 100);
+});
+
+document.querySelectorAll('.read-more').forEach(button => {
+    button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const details = document.getElementById(targetId);
+        const isHidden = details.classList.contains('hidden');
+        
+        if (isHidden) {
+            details.classList.remove('hidden');
+            setTimeout(() => {
+                details.style.maxHeight = details.scrollHeight + 'px';
+            }, 10);
+            button.textContent = 'Read Less';
+        } else {
+            details.style.maxHeight = '0';
+            setTimeout(() => {
+                details.classList.add('hidden');
+            }, 300);
+            button.textContent = 'Read More';
+        }
     });
 });
