@@ -49,6 +49,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
@@ -85,21 +86,32 @@
 <body>
     <nav class="w-full bg-black text-white p-4 fixed top-0 z-10 nav-slide-in" role="navigation" aria-label="Main navigation">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold font-game">Muhammad Fishan Qaisar</h1>
-            <ul class="flex space-x-4">
+            <h1 class="text-xl font-bold font-game nav-title">Muhammad Fishan Qaisar</h1>
+            <i class="fas fa-bars text-2xl hamburger cursor-pointer" aria-label="Toggle menu"></i>
+            <ul class="flex space-x-4 nav-links">
                 <li><a href="#home" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Home section">Home</a></li>
                 <li><a href="#about" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to About section">About</a></li>
                 <li><a href="projects.html" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Projects page">Projects</a></li>
                 <li><a href="#contact" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Contact section">Contact</a></li>
             </ul>
+            <div class="nav-sidebar fixed top-0 right-0 h-full bg-black w-64 transform translate-x-full transition-transform duration-300">
+                <i class="fas fa-times text-2xl text-white absolute top-4 right-4 cursor-pointer" aria-label="Close menu"></i>
+                <ul class="flex flex-col space-y-4 mt-16 px-4">
+                    <li><a href="#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
+                    <li><a href="#about" class="nav-link text-lg" aria-label="Go to About section">About</a></li>
+                    <li><a href="projects.html" class="nav-link text-lg" aria-label="Go to Projects page">Projects</a></li>
+                    <li><a href="#contact" class="nav-link text-lg" aria-label="Go to Contact section">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <section id="home" class="min-h-screen flex items-center justify-center bg-black pt-16 relative" role="banner">
-        <iframe class="absolute top-0 left-0 w-full h-full opacity-60 non-clickable" src="https://www.youtube.com/embed/9QzWSHjqy7I?autoplay=1&loop=1&mute=1&controls=0&rel=0&showinfo=0&playlist=9QzWSHjqy7I" frameborder="0" allow="autoplay; loop" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full opacity-60 non-clickable video-background" src="https://www.youtube.com/embed/9QzWSHjqy7I?autoplay=1&loop=1&mute=1&controls=0&rel=0&showinfo=0&playlist=9QzWSHjqy7I" frameborder="0" allow="autoplay; loop" allowfullscreen></iframe>
+        <img src="images/background.jpg" alt="Static background image" class="absolute top-0 left-0 w-full opacity-60 object-cover static-background hidden">
         <div class="text-center px-4 relative z-10">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white font-game neon-glow">Muhammad Fishan Qaisar</h1>
-            <p class="text-lg md:text-xl mb-6 text-neon font-game">Crafting Immersive Worlds with Unity & C#</p>
+            <p class="text-lg md:text-xl mb-6 text-neon font-game">I write code not to build programs, but to breathe worlds alive.</p>
             <a href="#about" class="bg-neon text-black px-6 py-3 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" aria-label="Learn more about me">
                 My Story
             </a>
@@ -113,10 +125,10 @@
                 <img src="images/DP.jpg" alt="Muhammad Fishan Qaisar's profile picture" class="w-48 h-48 rounded-full mb-6 md:mb-0 md:mr-8 object-cover pixel-border">
                 <div class="text-center md:text-left">
                     <p class="text-lg mb-4">
-                        I'm Muhammad Fishan Qaisar, a game developer who traveled from a rural village to Lahore with dreams of joining the ISSB. Life had other plans, and I discovered my passion for creating immersive digital worlds.
+                        Hey, this is me, Muhammad Fishan Qaisar, a passionate game developer currently pursuing my Bachelor’s in Computer Science at Lahore Garrison University. With 1 to 2 years of hands-on experience in the game development world, I’ve had the opportunity to dive into a variety of exciting projects. From crafting addictive hyper-casual games to designing immersive simulation and ASMR experiences, I’ve worked across both 2D and 3D platforms.
                     </p>
                     <p class="text-lg mb-4">
-                        Now pursuing a BSCS at Lahore Garrison University, I work at Euphoria XR, building games with Unity and C# that captivate players. My internship at Space Storm Gaming Studios fueled my drive to craft engaging experiences. Skilled in C++, Adobe Illustrator, and Photoshop, I blend creativity and code to bring game ideas to life.
+                        I want to create my own Game Development Studio that will create AAA games in Pakistan.
                     </p>
                     <a href="./assets/resume.pdf" class="bg-neon text-black px-6 py-3 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" download aria-label="Download my resume">Download Resume</a>
                 </div>
@@ -128,59 +140,89 @@
                 <div class="experience-card">
                     <h3 class="text-xl font-bold mb-2 font-game">Experience</h3>
                     <ul class="text-lg mb-4">
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/game-dev.png" alt="Game Developer icon" class="w-6 h-6 mr-2">
-                            Game Developer, Euphoria XR (Part-time, Feb 2024–Present)
+                            <div>
+                                Game Developer, Euphoria XR (Part-time, Feb 2024–Present)
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-1-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="experience-1-details">
+                                    <p class="text-sm mt-2">
+                                        At Euphoria XR, I develop engaging games using Unity and C#, focusing on seamless gameplay and innovative mechanics.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/lead.png" alt="Lead icon" class="w-6 h-6 mr-2">
-                            Game Development Lead, Google Developer Group, Lahore Garrison University
+                            <div>
+                                Game Development Lead, Google Developer Group, Lahore Garrison University
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-2-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="experience-2-details">
+                                    <p class="text-sm mt-2">
+                                        I mentor students and lead workshops to foster game development skills.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                     </ul>
-                    <button class="read-more bg-neon text-black px-4 py-2 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" data-target="experience-details">Read More</button>
-                    <div class="details hidden max-h-0" id="experience-details">
-                        <p class="text-lg mt-4">
-                            At Euphoria XR, I develop engaging games using Unity and C#, focusing on seamless gameplay and innovative mechanics. As Game Development Lead at Google Developer Group, I mentor students and lead workshops to foster game development skills.
-                        </p>
-                    </div>
                 </div>
                 <div class="experience-card">
                     <h3 class="text-xl font-bold mb-2 font-game">Skills</h3>
                     <ul class="text-lg mb-4">
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/unity.png" alt="Unity icon" class="w-6 h-6 mr-2">
-                            Unity Game Engine
+                            <div>
+                                Unity Game Engine
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-1-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="skills-1-details">
+                                    <p class="text-sm mt-2">
+                                        Proficient in creating 2D and 3D games with Unity.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/csharp.png" alt="C# icon" class="w-6 h-6 mr-2">
-                            C#
+                            <div>
+                                C#
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-2-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="skills-2-details">
+                                    <p class="text-sm mt-2">
+                                        Skilled in C# for robust game logic.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/illustrator.png" alt="Illustrator icon" class="w-6 h-6 mr-2">
-                            Adobe Illustrator
+                            <div>
+                                Adobe Illustrator
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-3-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="skills-3-details">
+                                    <p class="text-sm mt-2">
+                                        Expertise in enhancing game art for visually captivating experiences.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                     </ul>
-                    <button class="read-more bg-neon text-black px-4 py-2 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" data-target="skills-details">Read More</button>
-                    <div class="details hidden max-h-0" id="skills-details">
-                        <p class="text-lg mt-4">
-                            Proficient in Unity for creating 2D and 3D games, I leverage C# for robust game logic. My Adobe Illustrator expertise enhances game art, ensuring visually captivating experiences.
-                        </p>
-                    </div>
                 </div>
                 <div class="experience-card">
                     <h3 class="text-xl font-bold mb-2 font-game">Certifications</h3>
                     <ul class="text-lg mb-4">
-                        <li class="flex items-center">
+                        <li class="flex items-center mb-2">
                             <img src="images/icons/cert-unity.png" alt="Unity Certification icon" class="w-6 h-6 mr-2">
-                            Unity Essentials Pathway
+                            <div>
+                                Unity Essentials Pathway
+                                <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="certifications-1-details">Read More ></span>
+                                <div class="details hidden max-h-0" id="certifications-1-details">
+                                    <p class="text-sm mt-2">
+                                        Validates foundational skills in Unity, covering game design, scripting, and asset integration.
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                     </ul>
-                    <button class="read-more bg-neon text-black px-4 py-2 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" data-target="certifications-details">Read More</button>
-                    <div class="details hidden max-h-0" id="certifications-details">
-                        <p class="text-lg mt-4">
-                            The Unity Essentials Pathway certification validates my foundational skills in Unity, covering game design, scripting, and asset integration, equipping me to build professional-grade games.
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -189,8 +231,14 @@
     <section id="contact" class="py-16 bg-black text-white" role="region" aria-label="Contact me">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-8 font-game neon-glow">Get in Touch</h2>
-            <p class="mb-4">Email: <a href="/cdn-cgi/l/email-protection#d6beb1abb0b9b6a9b9b1abb9aaf6b3aeb7bba6bab3f8b5b9bb" class="text-neon hover:underline focus:outline-none focus:ring-2 focus:ring-neon"><span class="__cf_email__" data-cfemail="b7dfd0cad1d8d7c8d8d0cad8cbf7d2cfd6dac7dbd299d4d8da">[email&#160;protected]</span></a></p>
-            <p class="mb-4">LinkedIn: <a href="https://linkedin.com/in/muhammad-fishan-qaisar" class="text-neon hover:underline focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer">My Profile</a></p>
+            <div class="contact-icons flex justify-center space-x-4">
+                <a href="mailto:iamfishan011@gmail.com" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon">
+                    <i class="fas fa-envelope text-neon text-2xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/muhammad-fishan-qaisar" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin text-neon text-2xl"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -198,8 +246,6 @@
         ↑
     </button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="script.js"></script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935c968cdd70c013',t:'MTc0NTU3MDk3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

@@ -42,11 +42,12 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         nav.classList.add('nav-slide-in-active');
     }, 100);
+    updateBackground();
 });
 
-document.querySelectorAll('.read-more').forEach(button => {
-    button.addEventListener('click', () => {
-        const targetId = button.getAttribute('data-target');
+document.querySelectorAll('.read-more').forEach(link => {
+    link.addEventListener('click', () => {
+        const targetId = link.getAttribute('data-target');
         const details = document.getElementById(targetId);
         const isHidden = details.classList.contains('hidden');
         
@@ -55,13 +56,51 @@ document.querySelectorAll('.read-more').forEach(button => {
             setTimeout(() => {
                 details.style.maxHeight = details.scrollHeight + 'px';
             }, 10);
-            button.textContent = 'Read Less';
+            link.textContent = 'Read Less';
         } else {
             details.style.maxHeight = '0';
             setTimeout(() => {
                 details.classList.add('hidden');
             }, 300);
-            button.textContent = 'Read More';
+            link.textContent = 'Read More >';
         }
+    });
+});
+
+function updateBackground() {
+    const videoBackground = document.querySelector('.video-background');
+    const staticBackground = document.querySelector('.static-background');
+    if (window.innerWidth <= 768) {
+        videoBackground.style.display = 'none';
+        staticBackground.classList.remove('hidden');
+    } else {
+        videoBackground.style.display = 'block';
+        staticBackground.classList.add('hidden');
+    }
+}
+
+window.addEventListener('resize', () => {
+    updateBackground();
+    const sidebar = document.querySelector('.nav-sidebar');
+    if (window.innerWidth > 768) {
+        sidebar.classList.remove('nav-sidebar-open');
+    }
+});
+
+const hamburger = document.querySelector('.hamburger');
+const closeBtn = document.querySelector('.fa-times');
+const sidebar = document.querySelector('.nav-sidebar');
+
+hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('nav-sidebar-open');
+});
+
+closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('nav-sidebar-open');
+});
+
+document.querySelectorAll('.nav-sidebar a').forEach(link => {
+    link.addEventListener('click', () => {
+        sidebar.classList.remove('nav-sidebar-open');
     });
 });
