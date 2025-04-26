@@ -77,15 +77,33 @@ section {
 }
 
 .nav-title {
+    font-size: 1.25rem;
     white-space: nowrap;
 }
 
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
 .nav-sidebar {
-    z-index: 20;
+    z-index: 30; /* Higher z-index to ensure visibility */
+    background-color: #000000 !important; /* Solid black background */
+    opacity: 1; /* Ensure no transparency */
+    width: 75vw; /* Wider to cover content */
+    min-height: 100vh; /* Full viewport height */
+    overflow: auto; /* Handle content overflow */
 }
 
 .nav-sidebar-open {
     transform: translateX(0);
+}
+
+.nav-sidebar-open ~ .hamburger {
+    display: none; /* Hide hamburger when sidebar is open */
 }
 
 .nav-links {
@@ -177,16 +195,42 @@ a:focus, button:focus {
     outline-offset: 3px;
 }
 
+#home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+}
+
+#home .text-center {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
     .nav-title {
         font-size: 0.5rem;
-        padding-right: 1rem;
+        padding-right: 2rem;
+        white-space: nowrap;
     }
     .nav-links {
         display: none;
     }
     .hamburger {
         display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 40; /* Higher than sidebar */
+    }
+    nav .container {
+        flex-wrap: nowrap;
+        position: relative;
     }
     .project-card, .experience-card {
         margin-bottom: 1.5rem;
@@ -198,17 +242,15 @@ a:focus, button:focus {
     #about img {
         margin-bottom: 1.5rem;
     }
-    h1 {
-        font-size: 2rem;
+    #home {
+        min-height: 60vh;
+        padding-top: 5rem;
     }
-    h2 {
+    #home h1 {
         font-size: 1.5rem;
-    }
-    h3 {
-        font-size: 1.2rem;
-    }
-    p, li {
-        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        max-width: 100%;
     }
     .text-lg {
         font-size: 0.9rem;
@@ -227,12 +269,29 @@ a:focus, button:focus {
     }
     .static-background {
         display: block;
-        height: 50vh;
+        height: 60vh;
+        object-fit: cover;
+        width: 100%;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    p, li {
+        font-size: 0.9rem;
     }
 }
 
 @media (min-width: 769px) {
     .nav-sidebar {
         display: none;
+    }
+    .hamburger {
+        display: none !important;
     }
 }

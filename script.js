@@ -93,14 +93,21 @@ const sidebar = document.querySelector('.nav-sidebar');
 
 hamburger.addEventListener('click', () => {
     sidebar.classList.toggle('nav-sidebar-open');
+    const isOpen = sidebar.classList.contains('nav-sidebar-open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.style.display = isOpen ? 'none' : 'block'; // Hide hamburger when sidebar opens
 });
 
 closeBtn.addEventListener('click', () => {
     sidebar.classList.remove('nav-sidebar-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.style.display = 'block'; // Show hamburger when sidebar closes
 });
 
 document.querySelectorAll('.nav-sidebar a').forEach(link => {
     link.addEventListener('click', () => {
         sidebar.classList.remove('nav-sidebar-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.style.display = 'block'; // Show hamburger when sidebar closes
     });
 });
