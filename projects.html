@@ -1,76 +1,112 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Muhammad Fishan Qaisar</title>
-    <meta name="description" content="Projects by Muhammad Fishan Qaisar, a Unity game developer">
-    <meta name="keywords" content="game developer, Unity, C#, Muhammad Fishan Qaisar, projects">
-    <link rel="icon" href="./favicon.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Muhammad Fishan Qaisar</title>
+  <meta name="description" content="Projects by Muhammad Fishan Qaisar, a Unity game developer">
+  <meta name="keywords" content="game developer, Unity, C#, Muhammad Fishan Qaisar, projects">
+  <link rel="icon" href="./favicon.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav class="w-full bg-black text-white p-4 fixed top-0 z-10 nav-slide-in" role="navigation" aria-label="Main navigation">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="font-bold font-game nav-title">Muhammad Fishan Qaisar</h1>
-            <i class="fas fa-bars text-2xl hamburger cursor-pointer" aria-label="Toggle menu" aria-expanded="false"></i>
-            <ul class="flex space-x-4 nav-links">
-                <li><a href="index.html#home" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Home section">Home</a></li>
-                <li><a href="index.html#about" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to About section">About</a></li>
-                <li><a href="projects.html" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Projects page">Projects</a></li>
-                <li><a href="index.html#contact" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Contact section">Contact</a></li>
-            </ul>
-            <div class="nav-sidebar fixed top-0 right-0 h-full bg-black w-64 transform translate-x-full transition-transform duration-300">
-                <i class="fas fa-times text-2xl text-white absolute top-4 right-4 cursor-pointer" aria-label="Close menu"></i>
-                <ul class="flex flex-col space-y-4 mt-16 px-4">
-                    <li><a href="index.html#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
-                    <li><a href="index.html#about" class="nav-link text-lg" aria-label="Go to About section">About</a></li>
-                    <li><a href="projects.html" class="nav-link text-lg" aria-label="Go to Projects page">Projects</a></li>
-                    <li><a href="index.html#contact" class="nav-link text-lg" aria-label="Go to Contact section">Contact</a></li>
-                </ul>
-            </div>
+  <nav class="w-full bg-black text-white p-4 fixed top-0 z-10 nav-slide-in" role="navigation" aria-label="Main navigation">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="font-bold font-game nav-title">Muhammad Fishan Qaisar</h1>
+      <i class="fas fa-bars text-2xl hamburger cursor-pointer" aria-label="Toggle menu" aria-expanded="false"></i>
+      <ul class="flex space-x-4 nav-links">
+        <li><a href="index.html#home" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Home section">Home</a></li>
+        <li><a href="index.html#about" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to About section">About</a></li>
+        <li><a href="projects.html" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Projects page">Projects</a></li>
+        <li><a href="index.html#contact" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Contact section">Contact</a></li>
+      </ul>
+      <div class="nav-sidebar fixed top-0 right-0 h-full bg-black w-64 transform translate-x-full transition-transform duration-300">
+        <i class="fas fa-times text-2xl text-white absolute top-4 right-4 cursor-pointer" aria-label="Close menu"></i>
+        <ul class="flex flex-col space-y-4 mt-16 px-4">
+          <li><a href="index.html#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
+          <li><a href="index ​​​​​​index.html#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
+          <li><a href="index.html#about" class="nav-link text-lg" aria-label="Go to About section">About</a></li>
+          <li><a href="projects.html" class="nav-link text-lg" aria-label="Go to Projects page">Projects</a></li>
+          <li><a href="index.html#contact" class="nav-link text-lg" aria-label="Go to Contact section">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="projects" class="py-16 bg-white pt-16" role="region" aria-label="My projects">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-black">My Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 p-6 rounded shadow project-card cursor-pointer" data-project="recycle" onclick="window.location.href='projects/RecyclingCenter.html'">
+          <img src="./images/recycle-center-simulator.jpg" alt="Recycle Center Simulator game screenshot" class="w-full h-48 object-cover mb-4 rounded">
+          <h3 class="text-xl font-bold mb-2 text-black">Recycle Center Simulator</h3>
+          <p class="mb-4 text-gray-700">
+ Snooker Fifty Game</p>
         </div>
-    </nav>
-
-    <section id="projects" class="py-16 bg-white pt-16" role="region" aria-label="My projects">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8 text-black">My Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-100 p-6 rounded shadow project-card" data-project="recycle">
-                    <img src="./images/recycle-center-simulator.jpg" alt="Recycle Center Simulator game screenshot" class="w-full h-48 object-cover mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2 text-black">Recycle Center Simulator</h3>
-                    <p class="mb-4 text-gray-700">
-                        A Unity-based simulation game where players manage a recycling facility, balancing efficiency and sustainability. Built with C# for complex systems.
-                    </p>
-                    <a href="projects/RecyclingCenter.html" class="text-red-600 hover:underline focus:outline-none focus:ring-2 focus:ring-red-600" rel="noopener noreferrer">View Project</a>
-                </div>
-                <div class="bg-gray-100 p-6 rounded shadow project-card" data-project="tangle">
-                    <img src="./images/tangle-master.jpg" alt="Tangle Master game screenshot" class="w-full h-48 object-cover mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2 text-black">Tangle Master</h3>
-                    <p class="mb-4 text-gray-700">
-                        A Unity puzzle game challenging players to untangle intricate patterns. Developed with C# for intuitive mechanics and vibrant visuals.
-                    </p>
-                    <a href="projects/TangleMaster.html" class="text-red-600 hover:underline focus:outline-none focus:ring-2 focus:ring-red-600" rel="noopener noreferrer">View Project</a>
-                </div>
-                <div class="bg-gray-100 p-6 rounded shadow project-card" data-project="hammer">
-                    <img src="./images/home-hammer-2d.jpg" alt="Home Hammer 2D game screenshot" class="w-full h-48 object-cover mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2 text-black">Home Hammer 2D</h3>
-                    <p class="mb-4 text-gray-700">
-                        A 2D Unity game where players renovate homes through creative puzzles. Built with C# for smooth interactions and engaging design.
-                    </p>
-                    <a href="projects/HomeHammer2D.html" class="text-red-600 hover:underline focus:outline-none focus:ring-2 focus:ring-red-600" rel="noopener noreferrer">View Project</a>
-                </div>
-            </div>
+        <div class="bg-gray-100 p-6 rounded shadow project-card cursor-pointer" data-project="tangle" onclick="window.location.href='projects/TangleMaster.html'">
+          <img src="./images/tangle-master.jpg" alt="Tangle Master game screenshot" class="w-full h-48 object-cover mb-4 rounded">
+          <h3 class="text-xl font-bold mb-2 text-black">Tangle Master</h3>
+          <p class="mb-4 text-gray-700">
+            A Unity puzzle game challenging players to untangle intricate patterns. Developed with C# for intuitive mechanics and vibrant visuals.
+          </p>
         </div>
-    </section>
+        <div class="bg-gray-100 p-6 rounded shadow project-card cursor-pointer" data-project="hammer" onclick="window.location.href='projects/HomeHammer2D.html'">
+          <img src="./images/home-hammer-2d.jpg" alt="Home Hammer 2D game screenshot" class="w-full h-48 object-cover mb-4 rounded">
+          <h3 class="text-xl font-bold mb-2 text-black">Home Hammer 2D</h3>
+          <p class="mb-4 text-gray-700">
+            A 2D Unity game where players renovate homes through creative puzzles. Built with C# for smooth interactions and engaging design.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <button id="back-to-top" class="fixed bottom-4 right-4 bg-neon text-black p-3 rounded-full hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon pixel-button" aria-label="Scroll back to top">
-        ↑
-    </button>
+  <button id="back-to-top" class="fixed bottom-4 right-4 bg-neon text-black p-3 rounded-full hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon pixel-button" aria-label="Scroll back to top">
+    ↑
+  </button>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
