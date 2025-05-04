@@ -212,6 +212,41 @@ a:focus, button:focus {
   box-sizing: border-box;
 }
 
+/* animated icon styles */
+.animated-icon {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.joystick-icon {
+  animation: tiltJoystick 2s ease-in-out infinite;
+}
+
+@keyframes tiltJoystick {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+}
+
+.gear-icon {
+  animation: spinGear 3s linear infinite;
+}
+
+@keyframes spinGear {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.heart-icon {
+  animation: pulseHeart 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
 @media (max-width: 768px) {
   .nav-title {
     font-size: 0.5rem;
@@ -285,6 +320,10 @@ a:focus, button:focus {
   }
   p, li {
     font-size: 0.9rem;
+  }
+  .animated-icon {
+    width: 48px;
+    height: 48px;
   }
 }
 
