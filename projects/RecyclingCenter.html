@@ -1,0 +1,107 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycle Center Simulator - Muhammad Fishan Qaisar</title>
+    <meta name="description" content="Recycle Center Simulator project by Muhammad Fishan Qaisar">
+    <meta name="keywords" content="game developer, Unity, C#, Recycle Center Simulator, Muhammad Fishan Qaisar">
+    <link rel="icon" href="../favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+    <nav class="w-full bg-black text-white p-4 fixed top-0 z-10 nav-slide-in" role="navigation" aria-label="Main navigation">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="font-bold font-game nav-title">Muhammad Fishan Qaisar</h1>
+            <i class="fas fa-bars text-2xl hamburger cursor-pointer" aria-label="Toggle menu" aria-expanded="false"></i>
+            <ul class="flex space-x-4 nav-links">
+                <li><a href="../index.html#home" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Home section">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to About section">About</a></li>
+                <li><a href="../projects.html" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Projects page">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Contact section">Contact</a></li>
+            </ul>
+            <div class="nav-sidebar fixed top-0 right-0 h-full bg-black w-64 transform translate-x-full transition-transform duration-300">
+                <i class="fas fa-times text-2xl text-white absolute top-4 right-4 cursor-pointer" aria-label="Close menu"></i>
+                <ul class="flex flex-col space-y-4 mt-16 px-4">
+                    <li><a href="../index.html#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link text-lg" aria-label="Go to About section">About</a></li>
+                    <li><a href="../projects.html" class="nav-link text-lg" aria-label="Go to Projects page">Projects</a></li>
+                    <li><a href="../index.html#contact" class="nav-link text-lg" aria-label="Go to Contact section">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="project-details" class="py-16 pt-20" role="region" aria-label="Recycle Center Simulator details">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center font-game neon-glow">Recycle Center Simulator</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative" style="padding-bottom: 56.25%;"> 
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/6R3mrT9OLK4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-4 font-game">Game Description</h3>
+                    <p class="text-lg mb-6">
+                        Recycle Center Simulator is a Unity-based simulation game where players take on the role of managing a recycling facility. The game challenges players to sort, process, and recycle materials efficiently while balancing sustainability and operational costs. Built with C#, the game features complex systems for resource management and realistic simulation mechanics, offering an engaging and educational experience.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-4 font-game">My Role</h3>
+                    <img src="../images/GIF/role.gif" alt="My role animation" class="w-32 h-32 mx-auto mb-4">
+                    <p class="text-lg">
+                        As the lead developer, I designed and implemented the core gameplay mechanics, including the sorting and processing systems, using Unity and C#. I also optimized the game for performance and created intuitive UI/UX to enhance player engagement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-neon text-black p-3 rounded-full hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon pixel-button" aria-label="Scroll back to top">
+        ↑
+    </button>
+
+    <script src="../script.js"></script>
+</body>
+</html>

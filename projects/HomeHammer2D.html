@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Hammer 2D - Muhammad Fishan Qaisar</title>
+    <meta name="description" content="Home Hammer 2D project by Muhammad Fishan Qaisar">
+    <meta name="keywords" content="game developer, Unity, C#, Home Hammer 2D, Muhammad Fishan Qaisar">
+    <link rel="icon" href="../favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+    <nav class="w-full bg-black text-white p-4 fixed top-0 z-10 nav-slide-in" role="navigation" aria-label="Main navigation">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="font-bold font-game nav-title">Muhammad Fishan Qaisar</h1>
+            <i class="fas fa-bars text-2xl hamburger cursor-pointer" aria-label="Toggle menu" aria-expanded="false"></i>
+            <ul class="flex space-x-4 nav-links">
+                <li><a href="../index.html#home" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Home section">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to About section">About</a></li>
+                <li><a href="../projects.html" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Projects page">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Go to Contact section">Contact</a></li>
+            </ul>
+            <div class="nav-sidebar fixed top-0 right-0 h-full bg-black w-64 transform translate-x-full transition-transform duration-300">
+                <i class="fas fa-times text-2xl text-white absolute top-4 right-4 cursor-pointer" aria-label="Close menu"></i>
+                <ul class="flex flex-col space-y-4 mt-16 px-4">
+                    <li><a href="../index.html#home" class="nav-link text-lg" aria-label="Go to Home section">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link text-lg" aria-label="Go to About section">About</a></li>
+                    <li><a href="../projects.html" class="nav-link text-lg" aria-label="Go to Projects page">Projects</a></li>
+                    <li><a href="../index.html#contact" class="nav-link text-lg" aria-label="Go to Contact section">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="project-details" class="py-16 pt-20" role="region" aria-label="Home Hammer 2D details">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center font-game neon-glow">Home Hammer 2D</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative" style="padding-bottom: 56.25%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID_HAMMER" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-4 font-game">Game Description</h3>
+                    <p class="text-lg mb-6">
+                        Home Hammer 2D is a 2D Unity game where players renovate homes through creative puzzles. The game combines engaging gameplay with charming visuals, allowing players to design and restore houses. Built with C#, it offers smooth interactions and intuitive controls for a delightful experience.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-4 font-game">My Role</h3>
+                    <img src="../images/GIF/role.gif" alt="My role animation" class="w-32 h-32 mx-auto mb-4">
+                    <p class="text-lg">
+                        I developed the core puzzle mechanics and renovation systems using Unity and C#. I also designed the 2D art assets and ensured the game was optimized for a seamless player experience.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-4 font-game">Links</h3>
+                    <ul class="text-lg">
+                        <li><a href="https://example.com/home-hammer-2d-demo" class="text-neon hover:underline" target="_blank" rel="noopener noreferrer">Play Demo</a></li>
+                        <li><a href="https://github.com/muhammadfishanqaisar/home-hammer-2d" class="text-neon hover:underline" target="_blank" rel="noopener noreferrer">View Source Code</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-neon text-black p-3 rounded-full hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon pixel-button" aria-label="Scroll back to top">
+        ↑
+    </button>
+
+    <script src="../script.js"></script>
+</body>
+</html>
