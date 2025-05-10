@@ -37,45 +37,6 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
         </script><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,44 +79,38 @@
             <h2 class="text-3xl font-bold mb-8 text-center font-game neon-glow">Tangle Master</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="relative" style="padding-bottom: 56.25%;">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/sT9DLH6KCh4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Tangle Master Gameplay" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="mt-8">
                     <h3 class="text-2xl font-bold mb-4 font-game">Game Description</h3>
-                    <h3><strong>Tangle Master</strong> – <em>Untangle the Knots, Solve the Puzzle!</em></h3>
-
-<p>In <strong>Tangle Master</strong>, you’re tasked with unraveling intricate knots and tangled ropes in this relaxing 3D hypercasual puzzle game. Each level presents you with a complex rope puzzle, where your goal is to carefully untangle the ropes and free the trapped objects. The challenges become progressively harder, testing your patience and problem-solving skills.</p>
-
-<p><strong>🧩 Features:</strong></p>
-<ul style="list-style-type: disc; padding-left: 20px;">
-  <li>🔗 Untangle ropes and solve challenging puzzles</li>
-  <li>🧠 Engage your mind with increasingly complex levels</li>
-  <li>✨ Simple, intuitive controls perfect for all ages</li>
-  <li>🕹️ Relaxing gameplay with satisfying solutions</li>
-  <li>🎮 Easy to pick up and play, but hard to put down</li>
-</ul>
-
-<p>With its calming atmosphere and smooth mechanics, <strong>Tangle Master</strong> offers the perfect puzzle experience for those looking to test their brain while relaxing at the same time!</p>
-
+                    <p class="text-lg mb-6">
+                        <p><strong>Tangle Master</strong> is a 3D hypercasual puzzle game developed in Unity, designed to challenge your mind and soothe your senses. Your goal is to untangle ropes and free trapped objects across a series of increasingly complex levels.</p>
+                        <p>Each level presents a unique knot to unravel, requiring careful planning and precise movements. With intuitive controls and a relaxing atmosphere, Tangle Master is perfect for puzzle enthusiasts looking for a fun and engaging experience.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul style="list-style-type: disc; padding-left: 20px;">
+                          <li>🧶 Untangle ropes to free objects</li>
+                          <li>🧩 Progress through challenging levels</li>
+                          <li>🎮 Enjoy intuitive and responsive controls</li>
+                          <li>🌟 Experience a relaxing and satisfying gameplay loop</li>
+                          <li>📈 Test your problem-solving skills</li>
+                        </ul>
+                        <p>Dive into <strong>Tangle Master</strong> and enjoy the satisfaction of solving intricate puzzles in a beautifully crafted 3D environment.</p>
+                    </p>
                 </div>
                 <div class="mt-8">
                     <h3 class="text-2xl font-bold mb-4 font-game">My Role</h3>
-                    <img src="../animated-icons/gear-icon.svg" alt="Role animation" class="animated-icon gear-icon mx-auto mb-4">
-                    <h3>My Role</h3>
-
-<p>In <em>Tangle Master</em>, I worked as the <strong>Programmer</strong>, responsible for developing the game mechanics and features using the Unity engine and my programming skills. I collaborated with a talented team to bring the game to life:</p>
-
-<ul style="list-style-type: disc; padding-left: 20px;">
-  <li>Worked closely with the <strong>3D Artist</strong> to integrate and optimize 3D rope models and environments.</li>
-  <li>Implemented the core gameplay mechanics, including the rope interaction system, level progression, and physics.</li>
-  <li>Collaborated with the <strong>UI Artist</strong> to design and integrate user interfaces for level selection, hints, and game progression.</li>
-  <li>Ensured smooth and satisfying controls for the untangling mechanics, providing players with a relaxing yet challenging experience.</li>
-  <li>Worked with the <strong>Sound Artist</strong> to integrate audio effects that enhanced the feeling of untangling ropes and completing levels.</li>
-</ul>
-<br>
-<p>I was responsible for the core game logic, puzzle generation, optimization, and debugging to ensure a smooth and enjoyable gameplay experience.</p>
-
+                    <img src="../animated-icons/gear-icon.svg" alt="Gear animation icon" class="animated-icon gear-icon mx-auto mb-4" loading="lazy">
+                    <p>In <em>Tangle Master</em>, I served as the <strong>Unity Developer</strong>, responsible for coding the core puzzle mechanics and game systems using Unity and C#. I worked closely with a creative team:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
+                      <li>Integrated <strong>3D models and animations</strong> provided by the <strong>3D Artist</strong>.</li>
+                      <li>Implemented <strong>UI elements</strong> designed by the <strong>UI Artist</strong> for seamless navigation.</li>
+                      <li>Added <strong>sound effects and music</strong> from the <strong>Sound Artist</strong> to create a relaxing atmosphere.</li>
+                      <li>Brought the <strong>Game Designer’s</strong> puzzle concepts to life through code.</li>
+                    </ul>
+                    <br>
+                    <p>My responsibilities included developing the rope physics, level progression, and player interactions, ensuring a smooth and enjoyable experience.</p>
                 </div>
+                <a href="../projects.html" class="bg-neon text-black px-6 py-3 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button mt-8 inline-block" aria-label="Back to projects">Back to Projects</a>
             </div>
         </div>
     </section>
@@ -165,5 +120,5 @@
     </button>
 
     <script src="../script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a6f51d7f4db033',t:'MTc0NjM1MDc5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

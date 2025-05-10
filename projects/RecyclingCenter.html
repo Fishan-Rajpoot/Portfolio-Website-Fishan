@@ -37,45 +37,6 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
         </script><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,42 +78,39 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-8 text-center font-game neon-glow">Recycle Center Simulator</h2>
             <div class="max-w-4xl mx-auto">
-                <div class="relative" style="padding-bottom: 56.25%;"> 
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/6R3mrT9OLK4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="relative" style="padding-bottom: 56.25%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Recycle Center Simulator Gameplay" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="mt-8">
                     <h3 class="text-2xl font-bold mb-4 font-game">Game Description</h3>
-                    <h3>Recycling Center Simulator – <em>Clean, Sort, Recycle, Profit!</em></h3>
-
-                    <p>Step into the world of sustainable business in <strong>Recycling Center Simulator</strong>, a resource management game where you transform trash into treasure! Take on recycling deals from clients, visit abandoned and cluttered locations, and collect all kinds of waste materials.</p>
-                    
-                    <p>Once back at your factory, sort the trash using advanced sorting machines. Then, turn the waste into valuable raw materials using specialized equipment:</p>
-                    
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                      <li>♻️ <strong>Smelt plastic</strong></li>
-                      <li>🪵 <strong>Crush wood</strong></li>
-                      <li>🏗️ <strong>Press metal</strong></li>
-                      <li>🍾 <strong>Crush glass</strong></li>
-                    </ul>
-                    
-                    <p>Organize, optimize, and upgrade your recycling line to boost production and profits. Once the materials are ready, sell them to earn money and grow your recycling empire—all while helping clean up the world!</p>
-                   
+                    <p class="text-lg mb-6">
+                        <p>Step into the world of <strong>Recycle Center Simulator</strong>, a 3D resource management game built with Unity. Take on the role of a recycling center manager, tasked with collecting trash from abandoned locations and transforming it into valuable materials.</p>
+                        <p>Use specialized machines to sort, smelt, crush, press, and break down various types of waste. Organize your factory, upgrade equipment, and sell processed materials for profit while contributing to a cleaner environment.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul style="list-style-type: disc; padding-left: 20px;">
+                          <li>♻️ Manage a full-scale recycling operation</li>
+                          <li>🛠️ Upgrade and maintain sorting and processing machines</li>
+                          <li>📦 Process plastic, wood, metal, and glass</li>
+                          <li>💰 Sell recycled materials for profit</li>
+                          <li>🌍 Promote environmental sustainability</li>
+                        </ul>
+                        <p>With engaging gameplay and a focus on resource management, <strong>Recycle Center Simulator</strong> offers a unique and rewarding experience for players who enjoy strategy and simulation games.</p>
+                    </p>
                 </div>
                 <div class="mt-8">
                     <h3 class="text-2xl font-bold mb-4 font-game">My Role</h3>
-                    <img src="../animated-icons/gear-icon.svg" alt="Role animation" class="animated-icon gear-icon mx-auto mb-4">
-                    <p>In <em>Recycling Center Simulator</em>, I worked as the <strong>Programmer</strong>, responsible for developing the complete game using the Unity engine and my programming skills. I collaborated with a skilled team of creative professionals to bring the game to life:</p>
-                    
+                    <img src="../animated-icons/gear-icon.svg" alt="Gear animation icon" class="animated-icon gear-icon mx-auto mb-4" loading="lazy">
+                    <p>In <em>Recycle Center Simulator</em>, I served as the <strong>Unity Developer</strong>, responsible for implementing the core gameplay mechanics and systems using Unity and C#. I collaborated with a talented team:</p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
-                      <li>Implemented and optimized 3D assets provided by the <strong>3D Artist</strong>, including environments, machines, and characters.</li>
-                      <li>Integrated UI designs from the <strong>UI Artist</strong> to ensure smooth user interactions.</li>
-                      <li>Added audio effects and ambiance provided by the <strong>Sound Artist</strong> to enhance realism and feedback.</li>
-                      <li>Translated gameplay mechanics and features from the <strong>Game Designer</strong> into fully functional systems.</li>
+                      <li>Integrated <strong>3D models and environments</strong> provided by the <strong>3D Artist</strong>.</li>
+                      <li>Implemented <strong>UI elements</strong> designed by the <strong>UI Artist</strong> for intuitive player interactions.</li>
+                      <li>Synced <strong>sound effects and background music</strong> from the <strong>Sound Artist</strong> to enhance immersion.</li>
+                      <li>Developed gameplay systems based on the <strong>Game Designer’s</strong> vision for resource management and progression.</li>
                     </ul>
-                    
-                    <p>I was responsible for building and coding core systems such as deal generation, trash collection, sorting machine mechanics, material transformation workflows (e.g., smelting, crushing, pressing), and the resource selling system. Additionally, I handled progression logic, optimization, and bug fixing to deliver a polished and engaging simulation experience.</p>
-                    
+                    <br>
+                    <p>My work included coding the sorting and processing mechanics, managing game state, and ensuring smooth performance across various levels.</p>
                 </div>
+                <a href="../projects.html" class="bg-neon text-black px-6 py-3 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button mt-8 inline-block" aria-label="Back to projects">Back to Projects</a>
             </div>
         </div>
     </section>
@@ -162,5 +120,5 @@
     </button>
 
     <script src="../script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a6f51f6a2fbf6e',t:'MTc0NjM1MDc5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

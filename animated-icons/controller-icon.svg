@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="#ff0066">
+  <!-- Controller body -->
+  <path d="M12 22 C12 18 16 18 18 18 H46 C48 18 52 18 52 22 V42 C52 46 48 46 46 46 H18 C16 46 12 46 12 42 Z"/>
+  <!-- Left analog stick -->
+  <circle cx="22" cy="28" r="5" fill="#cc0052"/>
+  <circle cx="22" cy="28" r="2"/>
+  <!-- Right analog stick -->
+  <circle cx="42" cy="28" r="5" fill="#cc0052"/>
+  <circle cx="42" cy="28" r="2"/>
+  <!-- D-pad -->
+  <path d="M16 36 H22 V38 H18 V42 H16 V38 H12 V36 Z"/>
+  <!-- Action buttons -->
+  <circle cx="36" cy="38" r="2.5"/>
+  <circle cx="40" cy="36" r="2.5"/>
+  <circle cx="44" cy="38" r="2.5"/>
+  <circle cx="40" cy="40" r="2.5"/>
+  <!-- Triggers -->
+  <rect x="16" y="20" width="8" height="2" rx="1"/>
+  <rect x="40" y="20" width="8" height="2" rx="1"/>
+</svg>

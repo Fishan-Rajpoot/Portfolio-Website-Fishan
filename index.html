@@ -37,45 +37,6 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
         </script><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +45,11 @@
   <title>Muhammad Fishan Qaisar - Game Developer</title>
   <meta name="description" content="Portfolio of Muhammad Fishan Qaisar, a Unity game developer creating immersive experiences">
   <meta name="keywords" content="game developer, Unity, C#, Muhammad Fishan Qaisar, portfolio">
+  <meta property="og:title" content="Muhammad Fishan Qaisar - Game Developer Portfolio">
+  <meta property="og:description" content="Explore the game development projects of Muhammad Fishan Qaisar, built with Unity and C#.">
+  <meta property="og:image" content="./images/background.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="./favicon.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -114,8 +80,7 @@
   </nav>
 
   <section id="home" class="min-h-screen flex items-center justify-center bg-black pt-16 relative" role="banner">
-    <iframe class="absolute top-0 left-0 w-full h-full opacity-60 non-clickable video-background" src="https://www.youtube.com/embed/9QzWSHjqy7I?autoplay=1&loop=1&mute=1&controls=0&rel=0&showinfo=0&playlist=9QzWSHjqy7I" frameborder="0" allow="autoplay; loop" allowfullscreen></iframe>
-    <img src="images/background.jpg" alt="Static background image" class="absolute top-0 left-0 w-full opacity-60 object-cover static-background hidden">
+    <img src="images/background.jpg" alt="Static background image" class="absolute top-0 left-0 w-full h-full opacity-60 object-cover" loading="lazy">
     <div class="text-center px-4 relative z-10">
       <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white font-game neon-glow">Muhammad Fishan Qaisar</h1>
       <p class="text-lg md:text-xl mb-6 text-neon font-game">I write code not to build programs, but to breathe worlds alive.</p>
@@ -127,7 +92,7 @@
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-8 text-center font-game neon-glow">My Story</h2>
       <div class="flex flex-col md:flex-row items-center max-w-4xl mx-auto">
-        <img src="images/DP.jpg" alt="Muhammad Fishan Qaisar's profile picture" class="w-48 h-48 rounded-full mb-6 md:mb-0 md:mr-8 object-cover pixel-border">
+        <img src="images/DP.jpg" alt="Muhammad Fishan Qaisar's profile picture" class="w-48 h-48 rounded-full mb-6 md:mb-0 md:mr-8 object-cover pixel-border" loading="lazy">
         <div class="text-center md:text-left">
           <p class="text-lg mb-4">
             Hey, this is me, Muhammad Fishan Qaisar, a passionate game developer currently pursuing my Bachelor’s in Computer Science at Lahore Garrison University. With 1 to 2 years of hands-on experience in the game development world, I’ve had the opportunity to dive into a variety of exciting projects. From crafting addictive hyper-casual games to designing immersive simulation and ASMR experiences, I’ve worked across both 2D and 3D platforms.
@@ -145,27 +110,26 @@
             <h3 class="text-xl font-bold mb-2 font-game">Experience</h3>
             <ul class="text-lg mb-4">
               <li class="flex items-center mb-2">
-                <img src="images/icons/game-dev.png" alt="Game Developer icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/game-dev.png" alt="Game Developer icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   Game Developer, Euphoria XR (Part-time, Feb 2024–Present)
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-1-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-1-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="experience-1-details">
                     <p class="text-sm mt-2"><strong>At Euphoria XR</strong>, I develop engaging games using Unity and C#, focusing on seamless gameplay and innovative mechanics.</p>
-  
-                      <p><strong>My Responsibilities:</strong></p>
-                      <ol style="list-style-type: decimal; margin-left: 20px;">
-                        <li>Create mechanics using Unity and C#</li>
-                        <li>Build scenes using 3D and 2D art provided by artists</li>
-                        <li>Implement level design and gameplay flow</li>
-                      </ol>
+                    <p><strong>My Responsibilities:</strong></p>
+                    <ol style="list-style-type: decimal; margin-left: 20px;">
+                      <li>Create mechanics using Unity and C#</li>
+                      <li>Build scenes using 3D and 2D art provided by artists</li>
+                      <li>Implement level design and gameplay flow</li>
+                    </ol>
                   </div>
                 </div>
               </li>
               <li class="flex items-center mb-2">
-                <img src="images/icons/lead.png" alt="Lead icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/lead.png" alt="Lead icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   Game Development Lead, Google Developer Group, Lahore Garrison University
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-2-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="experience-2-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="experience-2-details">
                     <p class="text-sm mt-2">
                       I mentor students and lead workshops to foster game development skills.
@@ -179,10 +143,10 @@
             <h3 class="text-xl font-bold mb-2 font-game">Skills</h3>
             <ul class="text-lg mb-4">
               <li class="flex items-center mb-2">
-                <img src="images/icons/unity.png" alt="Unity icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/unity.png" alt="Unity icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   Unity Game Engine
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-1-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-1-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="skills-1-details">
                     <p class="text-sm mt-2">
                       Proficient in creating 2D and 3D games with Unity.
@@ -191,10 +155,10 @@
                 </div>
               </li>
               <li class="flex items-center mb-2">
-                <img src="images/icons/csharp.png" alt="C# icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/csharp.png" alt="C# icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   C#
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-2-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-2-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="skills-2-details">
                     <p class="text-sm mt-2">
                       Skilled in C# for robust game logic.
@@ -203,10 +167,10 @@
                 </div>
               </li>
               <li class="flex items-center mb-2">
-                <img src="images/icons/illustrator.png" alt="Illustrator icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/illustrator.png" alt="Illustrator icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   Adobe Illustrator
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-3-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="skills-3-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="skills-3-details">
                     <p class="text-sm mt-2">
                       Expertise in enhancing game art for visually captivating experiences.
@@ -220,10 +184,10 @@
             <h3 class="text-xl font-bold mb-2 font-game">Certifications</h3>
             <ul class="text-lg mb-4">
               <li class="flex items-center mb-2">
-                <img src="images/icons/cert-unity.png" alt="Unity Certification icon" class="w-6 h-6 mr-2">
+                <img src="images/icons/cert-unity.png" alt="Unity Certification icon" class="w-6 h-6 mr-2" loading="lazy">
                 <div>
                   Unity Essentials Pathway
-                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="certifications-1-details">Read More ></span>
+                  <span class="read-more text-neon hover:underline cursor-pointer text-sm ml-2" data-target="certifications-1-details" aria-expanded="false">Read More ></span>
                   <div class="details hidden max-h-0" id="certifications-1-details">
                     <p class="text-sm mt-2">
                       Validates foundational skills in Unity, covering game design, scripting, and asset integration.
@@ -234,9 +198,9 @@
             </ul>
           </div>
         </div>
-        <div class="text-center mt-8">
-          <img src="animated-icons/joystick-icon.svg" alt="Joystick animation" class="animated-icon joystick-icon mx-auto mb-4">
-          <a href="projects.html" class="bg-neon text-black px-6 py-3 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" aria-label="View my projects">View Projects</a>
+        <div class="text-center mt-8 project-button-container">
+          <img src="animated-icons/controller-icon.svg" alt="Game controller animation icon" class="animated-icon controller-icon mx-auto mb-4" loading="lazy">
+          <a href="projects.html" class="bg-neon text-black px-4 py-2 rounded hover:bg-neon-dark focus:outline-none focus:ring-2 focus:ring-neon font-game pixel-button" aria-label="View my projects">View Projects</a>
         </div>
       </div>
     </div>
@@ -246,13 +210,13 @@
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold mb-8 font-game neon-glow">Get in Touch</h2>
       <div class="contact-icons flex justify-center space-x-4">
-        <a href="/cdn-cgi/l/email-protection#b78e988285d9929a969e9bb7928f969a879b92d994989a" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon">
+        <a href="mailto:your.email@example.com" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" aria-label="Email me">
           <i class="fas fa-envelope text-neon text-2xl"></i>
         </a>
-        <a href="https://linkedin.com/in/muhammad-fishan-qaisar" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer">
+        <a href="https://linkedin.com/in/muhammad-fishan-qaisar" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
           <i class="fab fa-linkedin text-neon text-2xl"></i>
         </a>
-        <a href="https://github.com/muhammadfishanqaisar" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/muhammadfishanqaisar" class="contact-icon focus:outline-none focus:ring-2 focus:ring-neon" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
           <i class="fab fa-github text-neon text-2xl"></i>
         </a>
       </div>
@@ -263,6 +227,6 @@
     ↑
   </button>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a6f51f084153e5',t:'MTc0NjM1MDc5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script src="script.js"></script>
+</body>
 </html>
